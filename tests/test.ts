@@ -1,0 +1,17 @@
+import { Restaurant } from '../src/Classes/Restaurant'; // this will be your custom import
+import { expect } from 'chai';
+import { MaitreHotel } from '../src/Classes/MaitreHotel';
+import assertArrays from 'chai-arrays';
+chai.use(assertArrays);
+
+describe('DebutService', () => {
+  it('ÉTANT DONNE un restaurant ayant 3 tables, QUAND le service commence, ALORS elles sont toutes affectées au Maître d\'Hôtel',
+    () => {
+      const restaurant = new Restaurant(3);
+      const maitreHotel = new MaitreHotel();
+
+      restaurant.demarrerService(maitreHotel);
+
+      expect(restaurant.tables).to.be.equalTo(maitreHotel.tables);
+    })
+})
