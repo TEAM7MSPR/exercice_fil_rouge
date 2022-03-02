@@ -5,11 +5,12 @@ export class MaitreHotel {
   private _tables: Array<Table>;
 
   get tables(): Array<Table> {
+
     return this._tables;
   }
 
   constructor() {
-
+    this._tables = new Array<Table>();
   }
 
   public affecterTable(table: Table) {

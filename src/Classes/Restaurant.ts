@@ -9,7 +9,7 @@ export class Restaurant {
   }
 
   constructor(nombreDeTables: number) {
-
+    this._tables = new Array<Table>();
     for (let i = 0; i < nombreDeTables; i++) {
       this._tables.push(new Table());
     }
