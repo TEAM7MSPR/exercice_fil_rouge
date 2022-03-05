@@ -59,5 +59,10 @@ export class Restaurant {
       }
     }
   }
+
+  terminerService(): EtatService {
+    this._etatService = EtatService.Termine
+    return this._etatService;
+  }
 }
 

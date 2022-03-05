@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { MaitreHotel } from '../src/Classes/MaitreHotel';
 import { Serveur } from "../src/Classes/Serveur";
 import { Table } from '../src/Classes/Table';
+import { EtatService } from '../src/Classes/EtatService';
 
 describe('DebutService', () => {
   it('\tÉTANT DONNE un restaurant ayant 3 tables\n' +
@@ -57,6 +58,16 @@ describe('DebutService', () => {
     'ET qu\'une table est affectée à un serveur\n' +
     'ALORS la table éditée est affectée au serveur et les deux autres au maître d\'hôtel',
     () => {
+      const restaurant = new Restaurant(3);
+      const maitreHotel = new MaitreHotel();
+      const serveur = new Serveur();
 
+      restaurant.demarrerService(maitreHotel, serveur);
+      let result = restaurant.terminerService();
+
+
+      expect(result).to.be.equal(EtatService.Termine);
+      expect(restaurant.tables).to.include.members(maitreHotel.tables);
+      expect(restaurant.tables).to.include.members(serveur.tables);
     });
 })
