@@ -1,6 +1,8 @@
-import {Table} from "./Table";
+import { EtatService } from "./EtatService";
+import { Restaurant } from "./Restaurant";
+import { Table } from "./Table";
 
-export class Serveur{
+export class Serveur {
 
     private _tables: Array<Table>;
 
@@ -13,6 +15,8 @@ export class Serveur{
     }
 
     public affecterTable(table: Table) {
+
+        table.affecterServeur(this);
         this._tables.push(table);
     }
 
