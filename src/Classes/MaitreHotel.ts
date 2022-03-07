@@ -3,9 +3,11 @@ import { Table } from "./Table";
 export class MaitreHotel {
 
   private _tables: Array<Table>;
+  private _nom: String;
 
-  constructor() {
+  constructor(nom : String ) {
     this._tables = new Array<Table>();
+    this._nom = nom;
   }
 
   get tables(): Array<Table> {

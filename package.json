@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": { "test": "mocha -r ts-node/register tests/*.ts" },
+  "scripts": {
+    "test": "mocha -r ts-node/register tests/*.ts"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

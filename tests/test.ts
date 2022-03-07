@@ -1,9 +1,10 @@
 import { Restaurant } from '../src/Classes/Restaurant'; // this will be your custom import
 import { expect } from 'chai';
-import { MaitreHotel } from '../src/Classes/MaitreHotel';
-import { Serveur } from "../src/Classes/Serveur";
 import { Table } from '../src/Classes/Table';
 import { EtatService } from '../src/Classes/EtatService';
+import { ServeurBuilder } from '../src/utilites/ServeurBuilder';
+import { ServeurGenerator } from '../src/utilites/ServeurGenerator';
+import { MaitreHotelBuilder } from '../src/utilites/MaitreHotelBuilder';
 
 describe('DebutService', () => {
   it('\tÉTANT DONNE un restaurant ayant 3 tables\n' +
@@ -11,7 +12,7 @@ describe('DebutService', () => {
     '\tALORS elles sont toutes affectées au Maître d\'Hôtel',
     () => {
       const restaurant = new Restaurant(3);
-      const maitreHotel = new MaitreHotel();
+      const maitreHotel = new MaitreHotelBuilder().build();
 
       restaurant.demarrerService(maitreHotel);
 
@@ -23,8 +24,8 @@ describe('DebutService', () => {
     '\tALORS la table éditée est affectée au serveur et les deux autres au maître d\'hôtel',
     () => {
       const restaurant = new Restaurant(3);
-      const maitreHotel = new MaitreHotel();
-      const serveur = new Serveur();
+      const maitreHotel = new MaitreHotelBuilder().build();
+      const serveur = new ServeurBuilder().build();
 
       restaurant.demarrerService(maitreHotel, serveur);
 
@@ -37,16 +38,15 @@ describe('DebutService', () => {
     '\tALORS il n\'est pas possible de modifier le serveur affecté à la table',
     () => {
       const restaurant = new Restaurant(3);
-      const serveur1 = new Serveur();
-      const serveur2 = new Serveur();
+      const serveurGenerator = new ServeurGenerator().nommés("Claude").generate(1);
 
       let tables: Array<Table> = null;
 
-      restaurant.demarrerService(null, serveur1);
+      restaurant.demarrerService(null, serveurGenerator[0]);
 
       tables = restaurant.tables;
 
-      let result = tables[0].modifierServeurAffecte(serveur2, restaurant.etatService);
+      let result = tables[0].modifierServeurAffecte(serveurGenerator[1], restaurant.etatService);
 
       expect(result).to.be.equal(false);
 
@@ -59,8 +59,8 @@ describe('DebutService', () => {
     'ALORS la table éditée est affectée au serveur et les deux autres au maître d\'hôtel',
     () => {
       const restaurant = new Restaurant(3);
-      const maitreHotel = new MaitreHotel();
-      const serveur = new Serveur();
+      const maitreHotel = new MaitreHotelBuilder().build();
+      const serveur = new ServeurBuilder().build();
 
       restaurant.demarrerService(maitreHotel, serveur);
       let result = restaurant.terminerService();
