@@ -1,0 +1,22 @@
+{
+  "1": {
+      "fonction" : "Serveur",
+      "nom" : "Jean",
+      "Table" : "2"
+  },
+  "2": {
+    "fonction" : "Serveur",
+    "nom" : "Jean",
+    "Table" : "4"
+  },
+  "4": {
+    "fonction" : "Serveur",
+    "nom" : "Jean",
+    "Table" : "5"
+  },
+  "5": {
+    "fonction" : "Serveur",
+    "nom" : "Jean",
+    "Table" : "6"
+  }
+}
